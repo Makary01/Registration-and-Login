@@ -1,5 +1,6 @@
 package dao;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import model.User;
 import org.mindrot.jbcrypt.BCrypt;
 import utils.DbUtil;
@@ -25,7 +26,11 @@ public class UserDao {
             insertUser.setString(2, user.getEmail());
             insertUser.setString(3, user.getPassword());
             insertUser.setInt(4, user.getIsAdmin() ? 1 : 0);
-            insertUser.executeUpdate();
+            try{
+                insertUser.executeUpdate();
+            }catch (MySQLIntegrityConstraintViolationException e){
+                return null;
+            }
             try (ResultSet generatedKeys = insertUser.getGeneratedKeys()) {
                 if (generatedKeys.first()) {
                     user.setId(generatedKeys.getInt(1));

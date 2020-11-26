@@ -35,6 +35,8 @@ public class Register extends HttpServlet {
             if(createdUser!=null){
                 request.getSession().setAttribute("userId",createdUser.getId());
                 response.sendRedirect("/user/panel");
+            }else {
+                response.sendRedirect("/home");
             }
         }else {
             response.sendRedirect("/home");

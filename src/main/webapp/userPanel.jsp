@@ -11,6 +11,12 @@
     <title>User Panel Title</title>
 </head>
 <body>
-
+<div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+    <h1>Welcome user nr ${userId}</h1>
+    <form method="post" action="/user/logout">
+        <input type="submit" value="log out">
+    </form>
+</div>
+</form>
 </body>
 </html>
