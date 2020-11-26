@@ -1,2 +1,2 @@
 # Registration-and-Login
-Simple java registration and login program with data storage in MySQL database
+Simple java registration and login web app with data storage in MySQL database
