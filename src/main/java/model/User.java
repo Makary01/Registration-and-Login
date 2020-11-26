@@ -9,7 +9,11 @@ public class User {
     private String password;
     private Boolean isAdmin;
 
-    public User(String name, String email, String password, Boolean isAdmin) {
+    public User() {
+    }
+
+    public User(Integer id, String name, String email, String password, Boolean isAdmin) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -54,5 +58,9 @@ public class User {
 
     private String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

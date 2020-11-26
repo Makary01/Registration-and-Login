@@ -13,6 +13,6 @@ CREATE TABLE IF NOT EXISTS user (
     name VARCHAR(32) NOT NULL UNIQUE ,
     email VARCHAR(255) NOT NULL UNIQUE ,
     password VARCHAR(255) NOT NULL ,
-    admin TINYINT(1) NOT NULL DEFAULT '0' COMMENT 'Is this user an admin 1-yes, 0-no',
+    is_admin TINYINT(1) NOT NULL DEFAULT '0' COMMENT 'Is this user an admin 1-yes, 0-no',
     PRIMARY KEY (id)
 );
