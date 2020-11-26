@@ -43,7 +43,7 @@ public class UserDao {
 
 
     //Verifies the user, returns user if data is correct, null when incorrect
-    public User verifyUser(String nameOrEmail, String password) throws SQLException {
+    public User verifyUser(String nameOrEmail, String password){
         try(Connection conn = DbUtil.getConnection();
         PreparedStatement verifyUserPrepStm = conn.prepareStatement(VERIFY_USER_QUERY)){
             verifyUserPrepStm.setString(1, nameOrEmail);
@@ -61,6 +61,8 @@ public class UserDao {
                     return userToReturn;
                 }
             }
+        }catch (SQLException e){
+            e.printStackTrace();
         }
         return null;
     }
