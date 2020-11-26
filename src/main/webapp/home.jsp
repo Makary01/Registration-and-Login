@@ -26,25 +26,32 @@
 </style>
 <body>
 <div id="buttons">
-    <button onclick="document.querySelector('#register').style.display = 'flex';
-                    document.querySelector('#login').style.display = 'none';">register</button>
-    <button onclick="document.querySelector('#login').style.display = 'flex';
-                    document.querySelector('#register').style.display = 'none';">log in</button>
+    <button onclick="document.querySelector('#registerForm').style.display = 'flex';
+                    document.querySelector('#loginForm').style.display = 'none';">register</button>
+    <button onclick="document.querySelector('#loginForm').style.display = 'flex';
+                    document.querySelector('#registerForm').style.display = 'none';">log in</button>
 </div>
-<form style="display: none" id="register" action="/register" method="post">
+<form style="display: none" id="registerForm" action="/register" method="post">
     <h1>register</h1>
-    <input type="text" name="name" placeholder="name">
-    <input type="text" name="email" placeholder="email">
-    <input type="password" name="password" placeholder="password">
-    <input type="password" name="password2" placeholder="confirm password">
+    <input type="text" name="name" placeholder="user name" required
+           pattern="[a-z0-9_-]{5,16}" title="5 to 16 lowercase letters, numbers, _ and -">
+
+    <input type="email" name="email" placeholder="email" required>
+
+    <input type="password" name="password" placeholder="password"
+           required pattern=".{5,20}" title="5 to 20 chars" >
+
+    <input type="password" name="password2" placeholder="confirm password"
+           required pattern=".{5,20}" title="5 to 20 chars" >
+
     <input type="submit" value="register">
 </form>
-<form id="login" action="/login" method="post">
+<form id="loginForm" action="/login" method="post">
     <h1>login</h1>
     <input type="text" name="nameOrEmail" placeholder="name or email">
-    <input type="password" name="password" placeholder="password">
+    <input type="password" name="password" placeholder="password" required>
     <input type="submit" value="log in">
 </form>
+<p id="errorMsg"></p>
 </body>
-<script src="app.js"></script>
 </html>

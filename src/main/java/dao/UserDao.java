@@ -19,14 +19,14 @@ public class UserDao {
     //Create User in database, returns user with id
     public User createUser(User user){
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement insertUserPrepStm = connection.prepareStatement
+             PreparedStatement insertUser = connection.prepareStatement
                      (CREATE_USER_QUERY, PreparedStatement.RETURN_GENERATED_KEYS)){
-            insertUserPrepStm.setString(1, user.getName() );
-            insertUserPrepStm.setString(2, user.getEmail());
-            insertUserPrepStm.setString(3, user.getPassword());
-            insertUserPrepStm.setInt(4, user.getIsAdmin() ? 1 : 0);
-
-            try (ResultSet generatedKeys = insertUserPrepStm.getGeneratedKeys()) {
+            insertUser.setString(1, user.getName() );
+            insertUser.setString(2, user.getEmail());
+            insertUser.setString(3, user.getPassword());
+            insertUser.setInt(4, user.getIsAdmin() ? 1 : 0);
+            insertUser.executeUpdate();
+            try (ResultSet generatedKeys = insertUser.getGeneratedKeys()) {
                 if (generatedKeys.first()) {
                     user.setId(generatedKeys.getInt(1));
                     return user;
